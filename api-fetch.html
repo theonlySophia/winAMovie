@@ -5,28 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia Gallery</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        h1 { color: #333; }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 20px;
-        }
-        #loader {
-            font-size: 1.2em;
-            color: #555;
-            margin-top: 50px;
-        }
+
     </style>
 </head>
 <body>
@@ -34,8 +13,8 @@
 <body>
 
     <h1>Trivia Game</h1>
-    <div id="loader">Getting trivia questions...</div>
-    <div class="grid-container" id="dogGrid"></div>
+    <div></div>
+    <div></div>
 
     <script>
         async function getQuestions() {
@@ -52,7 +31,7 @@
                 const data = await response.json();
                 loader.style.display = 'none';
 
-                data.forEach(dog => {
+                data.forEach(question => {
                     const card = document.createElement('div');
                     card.className = 'dog-card';
                     
