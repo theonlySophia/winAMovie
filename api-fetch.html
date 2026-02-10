@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Gallery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 { color: #333; }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+        #loader {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    </head>
+<body>
+
+    <h1>Trivia Game</h1>
+    <div id="loader">Getting trivia questions...</div>
+    <div class="grid-container" id="dogGrid"></div>
+
+    <script>
+        async function getQuestions() {
+            const grid = document.getElementById('dogGrid');
+            const loader = document.getElementById('loader');
+
+            try {
+                const response = await fetch('https://opentdb.com/api.php?amount=5');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                loader.style.display = 'none';
+
+                data.forEach(dog => {
+                    const card = document.createElement('div');
+                    card.className = 'dog-card';
+                    
+                    card.innerHTML = `
+                        <img src="${dog.url}" alt="A cute dog">
+                        <div class="dog-info">ID: ${dog.id}</div>
+                    `;
+                    
+                    grid.appendChild(card);
+                });
+
+            } catch (error) {
+                loader.innerText = 'Failed to questions.';
+                console.error('Fetch Error:', error);
+            }
+        }
+
+        // Initialize the call
+        getQuestions();
+    </script>
+
+</body>
+</html>
