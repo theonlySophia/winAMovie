@@ -18,30 +18,16 @@
 
     <script>
         async function getQuestions() {
-            const grid = document.getElementById('dogGrid');
-            const loader = document.getElementById('loader');
-
             try {
-                const response = await fetch('https://opentdb.com/api.php?amount=5');
+                const response = await fetch('https://opentdb.com/api.php?amount=10');
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 
                 const data = await response.json();
-                loader.style.display = 'none';
 
-                data.forEach(question => {
-                    const card = document.createElement('div');
-                    card.className = 'dog-card';
-                    
-                    card.innerHTML = `
-                        <img src="${dog.url}" alt="A cute dog">
-                        <div class="dog-info">ID: ${dog.id}</div>
-                    `;
-                    
-                    grid.appendChild(card);
-                });
+                console.log('Fetched Questions:', data);
 
             } catch (error) {
                 loader.innerText = 'Failed to questions.';
