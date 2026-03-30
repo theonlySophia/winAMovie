@@ -1,0 +1,14 @@
+{
+  "name": "not-found",
+  "version": "1.0.0",
+  "description": "\"A package to send a not found response when a route does not exist\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sophia",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
